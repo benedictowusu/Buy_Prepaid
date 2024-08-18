@@ -1,0 +1,16 @@
+{% extends 'base.html' %}{% block queue %}
+<div>
+  <h1>Customer Queue</h1>
+  <ul>
+    {% for buyer in buyer %}
+    <li>{{ buyer.name }} (added at {{ buyer.request_time }})</li>
+    {% empty %}
+    <li>No customers in the queue.</li>
+    {% endfor %}
+  </ul>
+  <br />
+  <a href="{% url 'customers:buy' %}">Add Customer</a>
+  <br />
+  <a href="{% url 'customers:serve' %}">Serve Next Customer</a>
+</div>
+{% endblock %}
