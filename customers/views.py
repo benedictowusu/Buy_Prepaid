@@ -1,7 +1,13 @@
-from django.shortcuts import render
-from .models import Customers
+from django.shortcuts import render, redirect
+from .forms import BuyForm
 
 # Create your views here.
 def buy(request):
-    customers = Customers.objects.all()
-    return render(request, 'buy.html')
+    if request.method == "POST":
+        customers = BuyForm(request.POST)
+        if customers.is_valid():
+            customers.save()
+            return redirect('customers:buy')
+    else:
+        customers = BuyForm()
+    return render(request, 'buy.html', {"customers": customers})

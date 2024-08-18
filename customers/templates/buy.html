@@ -1,5 +1,11 @@
 {% extends 'base.html' %} {% block buy %}
 <div>
-    
+  <form
+    action="{% url 'customers:buy' %}"
+    method="post"
+  >
+    {% csrf_token %} {{ customers }}
+    <div><button type="submit">Buy</button></div>
+  </form>
 </div>
 {% endblock %}
