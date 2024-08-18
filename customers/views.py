@@ -13,15 +13,3 @@ def buy(request):
     else:
         customers = BuyForm()
     return render(request, 'buy.html', {"customers": customers})
-
-@login_required
-def serve_buyer(request):
-    buy = Customers.objects.order_by('request_time').first()
-    if buy:
-        buy.delete()
-    return redirect('customers:serve')
-
-@login_required
-def view_queue(request):
-    buyer = Customers.objects.order_by('request_time')
-    return render(request, 'queue.html', {'buyer':buyer})

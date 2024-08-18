@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Login</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex; /* Center the container horizontally */
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh; /* Set minimum height for full viewport */
+        background-color: #f5f5f5; /* Light gray background */
+      }
+
+      .container {
+        background-color: white;
+        padding: 30px;
+        border-radius: 5px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25); /* Lifted shadow effect */
+        width: 400px; /* Adjust width as needed */
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      label {
+        margin-bottom: 5px;
+      }
+
+      input,
+      button {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin-bottom: 10px;
+        width: 100%;
+      }
+
+      button {
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+      }
+
+      a {
+        text-decoration: none;
+        color: #007bff;
+        font-size: 0.8em;
+        margin-top: 10px;
+        display: inline-block;
+        margin-right: 10px;
+      }
+
+      .form-actions {
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome Back!</h1>
+      <form
+        class="login"
+        action="{% url 'seller:login' %}"
+        method="post"
+      >
+        {% csrf_token %} {{ loginform }} {% if request.GET.next %}
+        <input
+          type="hidden"
+          name="next"
+          value="{{ request.GET.next }}"
+        />
+        {% endif %}
+
+        <div class="form-actions">
+          <div style="display: flex; margin-top: 10px">
+            <span><input type="checkbox" /></span>
+            <span style="margin-left: 10px; font-size: 18px">Remember me</span>
+          </div>
+          <div><a href="#">Forgot Password?</a></div>
+        </div>
+        <div>
+          <button
+            style="margin-top: 20px"
+            type="submit"
+          >
+            Login
+          </button>
+        </div>
+        <hr />
+      </form>
+    </div>
+  </body>
+</html>
