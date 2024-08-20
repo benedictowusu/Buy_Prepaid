@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from .forms import BuyForm
-from .models import Customers
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
